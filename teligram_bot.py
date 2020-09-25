@@ -2,12 +2,9 @@ from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
 from Adafruit_IO import Client, Data
 import requests
 import os
-x = os.getenv('x')
-y = os.getenv('y')
+x = os.getenv('x')#ADAFRUIT_IO_USERNAME
+y = os.getenv('y') #ADAFRUIT_IO_KEY
 z = os.getenv('z')
-aio = Client(x,y)
-
-
 def on(bot,update):
     chat_id=update.message.chat_id
     bot.send_photo(chat_id,photo='https://img.icons8.com/plasticine/2x/light-on.png')
@@ -38,6 +35,4 @@ dp.add_handler(CommandHandler('turnon',on))
 dp.add_handler(CommandHandler('turnoff',off))
 dp.add_handler(MessageHandler(Filters.text&(~Filters.command),inmes))
 u.start_polling()
-u.idle()    
-   
-    
+u.idle()
